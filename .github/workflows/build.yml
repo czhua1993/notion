@@ -1,0 +1,27 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: use pnpm
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7
+      - name: use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+      - name: pnpm install
+        run: pnpm install
+      - name: pnpm build
+        run: pnpm build
