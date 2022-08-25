@@ -25,3 +25,8 @@ jobs:
         run: pnpm install
       - name: pnpm build
         run: pnpm build
+      - name: deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: build
